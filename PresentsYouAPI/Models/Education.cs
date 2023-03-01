@@ -7,6 +7,6 @@
         public string Degree { get; set; }
         public string Field { get; set; }
         public int Grade { get; set; }
-        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

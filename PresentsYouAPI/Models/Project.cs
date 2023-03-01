@@ -12,6 +12,6 @@ namespace PresentsYouAPI.Models
         public string GithubUrl { get; set; }
         public string LiveUrl { get; set; }
 
-        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }
