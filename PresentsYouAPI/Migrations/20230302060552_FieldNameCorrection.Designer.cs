@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PresentsYouAPI.Models;
 
@@ -10,9 +11,11 @@ using PresentsYouAPI.Models;
 namespace PresentsYouAPI.Migrations
 {
     [DbContext(typeof(PresentsYouDBContext))]
-    partial class PresentsYouDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230302060552_FieldNameCorrection")]
+    partial class FieldNameCorrection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

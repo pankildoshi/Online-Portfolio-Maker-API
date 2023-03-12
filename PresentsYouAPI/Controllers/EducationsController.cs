@@ -9,7 +9,7 @@ using PresentsYouAPI.Models;
 
 namespace PresentsYouAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class EducationsController : ControllerBase
     {
@@ -39,6 +39,28 @@ namespace PresentsYouAPI.Controllers
             }
 
             return education;
+        }
+
+        // GET: api/Educations/5
+        [HttpGet("{userid}")]
+        public async Task<ActionResult<IEnumerable<Education>>> GetEducationsByUserId(int userid)
+        {
+            var educations = await _context.Educations.ToListAsync();
+            List<Education> result = new List<Education>();
+
+            if (educations == null)
+            {
+                return NotFound();
+            }
+            foreach (var education in educations)
+            {
+                if (education.UserId == userid)
+                {
+                    result.Add(education);
+                }
+            }
+
+            return result;
         }
 
         // PUT: api/Educations/5
