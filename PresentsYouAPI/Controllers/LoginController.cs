@@ -39,11 +39,14 @@ namespace PresentsYouAPI.Controllers
         public async Task<ActionResult<User>> RegisterUser(User user)
         {
             var existingUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
-            if (existingUser != null) return BadRequest();
+            if (existingUser == null)
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return Ok(user);
+            }
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return Ok(user);
+            return BadRequest();
         }
     }
 }

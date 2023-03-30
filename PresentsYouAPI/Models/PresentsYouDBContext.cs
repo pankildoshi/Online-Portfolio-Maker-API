@@ -10,5 +10,7 @@ namespace PresentsYouAPI.Models
         public DbSet<Project> Projects { get; set; } = null!;
         public DbSet<Education> Educations { get; set; } = null!;
         public DbSet<Experience> Experiences { get; set; } = null!;
+
+        public DbSet<Profile> Profiles { get; set; } = null!;
     }
 }
