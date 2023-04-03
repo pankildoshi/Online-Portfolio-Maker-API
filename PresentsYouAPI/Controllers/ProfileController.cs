@@ -45,5 +45,39 @@ namespace PresentsYouAPI.Controllers
 
             return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProfile(string id, Profile profile)
+        {
+            if (id != profile.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(profile).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProfileExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool ProfileExists(string id)
+        {
+            return _context.Profiles.Any(p => p.Id == id);
+        }
     }
 }
